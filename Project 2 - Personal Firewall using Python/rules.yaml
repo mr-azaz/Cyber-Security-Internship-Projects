@@ -1,0 +1,27 @@
+# Rule file for Personal Firewall
+# Order matters: first match wins.
+default_action: allow
+
+rules:
+  - action: block
+    direction: any
+    protocol: tcp
+    dst_port: "23"
+    description: "Block Telnet"
+
+  - action: block
+    direction: any
+    protocol: any
+    src_ip: "10.0.0.0/8"
+    description: "Block private source network as example"
+
+  - action: allow
+    direction: any
+    protocol: tcp
+    dst_port: "80,443"
+    description: "Allow web traffic"
+
+  - action: allow
+    direction: any
+    protocol: icmp
+    description: "Allow ICMP (ping)"
