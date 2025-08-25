@@ -31,34 +31,47 @@ web-vulnerability-scanner/
 
 ---
 
-## 📌 Project 2: Personal Firewall in Python
+📌 Project 2: Personal Firewall in Python
 
-A lightweight **personal firewall** built using Python.  
-It captures, analyzes, and filters network packets in real-time.
+A lightweight personal firewall built using Python.
+It captures, analyzes, and filters packets in real time with rule-based decisions.
 
-### ⚙️ Features
-- Sniffs packets using **Scapy**.
-- Applies **rules** (allow/block by IP, port, protocol, direction).
-- Logs every decision to `firewall.log`.
-- Optional **iptables enforcement** for real packet blocking.
-- Simple **Tkinter GUI** for starting/stopping and live log view.
+⚙️ Features
 
-### 🛠️ How It Works
-1. **Sniff** → Capture packets from a chosen interface.  
-2. **Extract** → Gather metadata (protocol, IPs, ports, length).  
-3. **Decide** → Match against ordered rules in `rules.yaml`.  
-4. **Log** → Record ALLOW/BLOCK decision.  
-5. **Enforce (optional)** → Append DROP rules via iptables.
+Sniffs packets using Scapy
 
-### 📂 Folder Structure
+Rule-based allow/block (by IP, port, protocol, direction)
 
+Logs every event to firewall.log
+
+Optional iptables enforcement (real blocking)
+
+Simple Tkinter GUI for monitoring
+
+New Flask Web Dashboard for managing rules & logs
+
+🛠️ How It Works
+
+Sniff → Capture packets from the selected interface
+
+Extract → Collect metadata (protocol, IPs, ports, size)
+
+Decide → Compare against rules in rules.yaml (first match wins)
+
+Log → Save ALLOW / BLOCK decision
+
+Enforce (optional) → Apply DROP rules via iptables
+
+📂 Folder Structure
 personal-firewall-python/
-├── firewall.py # Main CLI firewall program
-├── gui.py # Optional Tkinter GUI
-├── rules.yaml # Rulebook (first-match-wins)
-└── README.md # Setup and usage guide
+├── firewall.py     # CLI firewall
+├── gui.py          # Tkinter GUI
+├── flask_gui.py    # Flask Web Dashboard
+├── rules.yaml      # Rulebook
+└── README.md       # Setup & usage guide
 
 ---
+
 
 ## 📌 Project 3: Keylogger with Encrypted Data Exfiltration  
 
