@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Keylogger Control Panel</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f4f6f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .navbar {
+      margin-bottom: 20px;
+    }
+    .card {
+      border-radius: 12px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.05);
+    }
+    .btn-lg {
+      border-radius: 10px;
+    }
+    .status-badge {
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <span class="navbar-brand">🔐 Keylogger Dashboard</span>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <!-- Status Card -->
+      <div class="col-md-12 mb-4">
+        <div class="card p-4 text-center">
+          <h4>Status: 
+            {% if running %}
+              <span class="badge bg-success status-badge">Running</span>
+            {% else %}
+              <span class="badge bg-danger status-badge">Stopped</span>
+            {% endif %}
+          </h4>
+        </div>
+      </div>
+
+      <!-- Control Buttons -->
+      <div class="col-md-12">
+        <div class="card p-4 text-center">
+          <h5 class="mb-3">Controls</h5>
+          <a href="{{ url_for('start') }}" class="btn btn-success btn-lg m-2">▶ Start</a>
+          <a href="{{ url_for('stop') }}" class="btn btn-danger btn-lg m-2">⏹ Stop</a>
+          <a href="{{ url_for('decrypt') }}" class="btn btn-primary btn-lg m-2">🔓 Decrypt Logs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
