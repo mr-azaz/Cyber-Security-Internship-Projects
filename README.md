@@ -57,3 +57,25 @@ personal-firewall-python/
 ├── gui.py # Optional Tkinter GUI
 ├── rules.yaml # Rulebook (first-match-wins)
 └── README.md # Setup and usage guide
+
+---
+
+## 📌 Project 3: Keylogger with Encrypted Data Exfiltration  
+
+A **Keylogger with AES-encrypted logs** and a **Flask-based Web GUI** for decryption and log viewing.  
+The project demonstrates **data encryption, secure logging, and web-based access**.  
+
+### ✨ Features
+- Capture and encrypt keystrokes using **cryptography.Fernet**.  
+- Save logs as `.enc` files for security.  
+- Flask **Web Dashboard** to decrypt and view logs.  
+- Stylish UI with simple navigation.  
+
+### 📂 Folder Structure
+keylogger-encrypted-flask/
+├── keylogger.py # Main keylogger script
+├── decrypt.py # CLI-based decryption
+├── app.py # Flask Web Application
+├── templates/ # HTML templates
+└── README.md # Detailed setup & usage
+
