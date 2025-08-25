@@ -1,73 +1,122 @@
-# Personal Firewall using Python (scapy + iptables + optional GUI)
+# 🔥 Personal Firewall using Python (scapy + iptables + optional GUIs)
 
-A lightweight personal firewall that sniffs packets with [scapy], applies rule-based
-allow/block decisions, logs events, and (optionally) enforces blocks via `iptables`.
+A lightweight personal firewall that:
 
-> **Note**: Packet sniffing and iptables changes require **root** on Linux.
+* Sniffs packets with **scapy**
+* Applies **rule-based allow/block decisions**
+* Logs events to file/console
+* Can optionally enforce rules via **iptables**
+* Provides both **desktop (Tkinter)** and **web (Flask)** dashboards
 
-## Features
-- Rule engine with first-match-wins semantics
-- Match by direction (in/out), protocol (tcp/udp/icmp/any), IP (CIDR supported), and ports (single, list, or range)
-- Default action (allow/deny) when no rule matches
-- Structured logging to file (and console with `--verbose`)
-- Optional GUI (Tkinter) for live monitoring and start/stop
-- Optional system-level blocking with `--enforce-iptables`
+> ⚠️ Packet sniffing & iptables require **root** (Linux only).
 
-## Quick Start (CLI)
+---
+
+## ✨ Features
+
+* ✅ Rule engine (first-match-wins)
+* ✅ Match by **direction, protocol, IP, ports**
+* ✅ Default action (`allow` / `block`)
+* ✅ Structured logging (file + console)
+* ✅ GUIs:
+
+  * 🖥️ Tkinter desktop monitor
+  * 🌐 Flask web dashboard
+* ✅ Optional iptables enforcement (`--enforce-iptables`)
+
+---
+
+## 🚀 Quick Start (CLI)
+
 ```bash
-# 1) Install deps
+# 1) Install dependencies
 sudo apt update
 sudo apt install -y python3-pip
-pip3 install scapy pyyaml
+pip3 install scapy pyyaml flask
 
-# 2) Clone / copy this project, then:
+# 2) Clone / copy this project
 cd personal-firewall-python
 
-# 3) Edit rules.yaml to your needs
+# 3) Edit rules.yaml as needed
 
-# 4) Run (requires root for sniffing)
+# 4) Run (needs root for sniffing)
 sudo python3 firewall.py --iface eth0 --config rules.yaml --log-file firewall.log --verbose
-# To enforce system-level blocks via iptables:
+
+# Enforce system-level blocks via iptables:
 sudo python3 firewall.py --iface eth0 --config rules.yaml --log-file firewall.log --enforce-iptables --verbose
 ```
 
-## Optional GUI
+---
+
+## 🖥️ Tkinter GUI
+
 ```bash
 sudo python3 gui.py
 ```
-Select your interface (e.g., `eth0` or `wlan0`), choose your rules file, and click **Start**.
 
-## Rules File
-See `rules.yaml` for examples. Order matters, first match wins. Fields:
-- `action`: `allow` | `block`
-- `direction`: `in` | `out` | `any`
-- `protocol`: `tcp` | `udp` | `icmp` | `any`
-- `src_ip` / `dst_ip`: single IP, CIDR (e.g., `192.168.1.0/24`), `*`, or `any`
-- `src_port` / `dst_port`: single (80), list (`80,443`), or range (`1000-2000`)
-- `description`: free text
+* Choose interface (e.g., `eth0`, `wlan0`)
+* Select rules file
+* Start/Stop firewall from a simple window
 
-`default_action`: `allow` (default) or `block` if you want default-deny.
+---
 
-## Notes & Limitations
-- Direction detection is heuristic in this demo. For precise control, consider integrating `nfqueue`/`iptables -j NFQUEUE` and deciding in userspace.
-- `--enforce-iptables` appends targeted DROP rules to INPUT/OUTPUT. You can list them with `sudo iptables -S` and clear with `sudo iptables -F` (be careful!).
-- Tested on Linux only. macOS/Windows require different backends (pf/wfp) and are not supported in this template.
-- Run in a lab or VM first to avoid accidentally blocking yourself.
+## 🌐 Flask Web Dashboard
 
-## Logging
-Events are appended to `firewall.log`, e.g.:
+```bash
+python3 flask_gui.py
+```
+
+* Open: [http://127.0.0.1:5000](http://127.0.0.1:5000)
+* View & manage rules (add/delete)
+* Live log viewer with ✅ ALLOW / ❌ BLOCK highlights
+
+---
+
+## 📜 Rules File
+
+* **action**: `allow` | `block`
+* **direction**: `in` | `out` | `any`
+* **protocol**: `tcp` | `udp` | `icmp` | `any`
+* **src\_ip** / **dst\_ip**: IP / CIDR / `*` / `any`
+* **src\_port** / **dst\_port**: single (80), list (`80,443`), or range (`1000-2000`)
+* **description**: free text
+
+> `default_action`: `allow` (default) or `block` for default-deny.
+
+---
+
+## ⚡ Notes & Limitations
+
+* Direction detection = heuristic (for full control, use **nfqueue + iptables**).
+* `--enforce-iptables` appends DROP rules to INPUT/OUTPUT.
+
+  * List: `sudo iptables -S`
+  * Clear: `sudo iptables -F` ⚠️ use carefully!
+* Tested on **Linux only** (macOS/Windows need pf/wfp).
+* Recommended: run inside **VM/lab environment** first.
+
+---
+
+## 📝 Logging
+
+Example log (`firewall.log`):
+
 ```
 2025-08-21 10:15:22,533 | INFO | BLOCK tcp 10.1.2.3:55000 -> 203.0.113.8:23 out eth0 len=60 | rule: Block Telnet
 ```
 
-## Project Structure
+---
+
+## 📂 Project Structure
+
 ```
 personal-firewall-python/
-├── firewall.py       # CLI firewall
-├── gui.py            # Optional Tkinter GUI
-├── rules.yaml        # Sample rule set
+├── firewall.py        # CLI firewall
+├── gui.py             # Tkinter GUI
+├── flask_gui.py       # Flask Web Dashboard
+├── templates/
+│   └── index.html     # Flask UI template
+├── rules.yaml         # Sample rules
 └── README.md
 ```
 
-## License
-MIT
