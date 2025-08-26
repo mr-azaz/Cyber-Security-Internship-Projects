@@ -92,3 +92,28 @@ keylogger-encrypted-flask/
 ├── templates/ # HTML templates
 └── README.md # Detailed setup & usage
 
+---
+
+
+📌 Project 5: Secure File Storage System with AES
+
+A secure file storage system with AES encryption and a Flask-based Web Interface.
+
+✨ Features
+
+Password-based AES encryption & decryption
+
+Displays metadata (filename, timestamp, hash)
+
+Tamper detection with integrity verification
+
+Download button for decrypted files
+
+UI styled with Bootstrap/TailwindCSS
+
+📂 Folder Structure
+secure-file-storage-aes/
+├── secure_store.py   # Core encryption/decryption logic  
+├── app.py            # Flask Web Application  
+├── templates/        # HTML templates  
+└── README.md         # Detailed setup & usage 
