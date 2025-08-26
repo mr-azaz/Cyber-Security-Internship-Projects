@@ -37,8 +37,8 @@ Project-5-Secure-File-Storage/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/secure-file-storage.git
-cd secure-file-storage
+git clone https://github.com/mr-azaz/Cyber-Security-Internship-Projects/Project 5 Secure File Storage System with AES.git
+cd Project 5 Secure File Storage System with AES
 ```
 
 ### 2️⃣ Create a Virtual Environment
