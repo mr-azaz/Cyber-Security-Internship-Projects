@@ -56,15 +56,18 @@ git push -u origin main
 
 
 ⚠ Notes
-❌ Do not include real Gmail credentials in the repository.
 
-Replace placeholders in sniffer_alert.py with your local credentials if using email alerts:
+Replace this code section in sniffer_alert.py with your local credentials if using email alerts:
 
 
 SENDER_EMAIL = "your_email@gmail.com"
 SENDER_PASSWORD = "YOUR_APP_PASSWORD"
 RECEIVER_EMAIL = "receiver_email@gmail.com"
-Optional: Upgrade the project later with more anomalies and a GUI interface.
+
+use a sender mail id and enable 2FA in google account security and use app password option to create the sender password (16-digit password).
+use them in the code section instead of given in above code.
+
+❌ Do not include real Gmail credentials in the repository, if you add this to your repository.
 
 📜 License
 This project is for educational purposes only.
