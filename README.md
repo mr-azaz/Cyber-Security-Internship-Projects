@@ -117,3 +117,32 @@ secure-file-storage-aes/
 ├── app.py            # Flask Web Application  
 ├── templates/        # HTML templates  
 └── README.md         # Detailed setup & usage 
+
+---
+
+
+📌 Project 7: Network Packet Sniffer with Alert System
+
+A real-time network packet sniffer built in Python using Scapy, SQLite, and Matplotlib.
+It captures live network traffic, detects anomalies such as DoS attacks and port scanning, logs them in a database, and optionally sends email alerts.
+
+✨ Features
+
+Capture live packets and log headers (IP, port, length, flags)
+
+Detect anomalies like DoS attacks and port scans
+
+Store captured data in SQLite for analysis
+
+Optional email alerts on threshold breaches
+
+Optional live traffic graph using Matplotlib
+
+📂 Folder Structure
+
+network-packet-sniffer/
+├── sniffer_alert.py # Main sniffer script with anomaly detection
+├── traffic.db # SQLite database storing captured traffic (generated at runtime)
+├── capture.pcap # Optional pcap output for packet analysis
+├── project7_venv/ # Virtual environment
+└── README.md # Setup & usage guide
